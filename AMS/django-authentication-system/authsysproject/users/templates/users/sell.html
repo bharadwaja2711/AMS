@@ -1,0 +1,71 @@
+<br>
+<br>
+<br>
+<form name="form1" id="form1" style="text-align:center;" color="blue" >
+  Brand: <select name="subject" id="subject">
+    <option value="" selected="selected">Select Brand</option>
+  </select>
+  <br><br>
+  Category: <select name="topic" id="topic">
+    <option value="" selected="selected">Select Category</option>
+  </select>
+  <br><br>
+  Model: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Select Model</option>
+  </select>
+  <br><br>
+ <form action="buyop.html">
+   <input type = "submit" value="save">
+ </form>
+
+</form>
+
+<body background=https://images.unsplash.com/photo-1494697536454-6f39e2cc972d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1980&q=1980>
+
+</body>
+
+<script>
+  var subjectObject = {
+  "Mercedes": {
+    "Sedan": ["C-class", "S-class", "E-class", "A-class"],
+    "Hatch Back": ["A-200D", "B-200CDi", "A180", "B180CDi"],
+    "SUV": ["GLC", "GLE", "GLA", "GLS", "EQS"],
+  },
+  "Toyota": {
+    "Sedan": ["Camry", "Yaris", "Etios", "Corolla Altis", "Prius"],
+    "Hatch Back": ["Etios liva", "Glanza", "Etios Cross"],
+    "SUV": ["Land Cruiser", "Fortuner", "Urban Cruiser", "Hyryder", "Innova Hycross"],
+  },
+   "Honda": {
+    "Sedan": ["Civic", "City", "Amaze", "Accord"],
+    "Hatch Back": ["Jazz", "Brio", "Fit"],
+    "Suv": ["WR-V", "CR-V", "Pilot", "HR-V"],
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+    //empty Chapters- and Topics- dropdowns
+    chapterSel.length = 1;
+    topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+    //empty Chapters dropdown
+    chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
